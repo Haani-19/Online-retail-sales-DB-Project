@@ -1,0 +1,63 @@
+-- File :sample_data.sql
+-- Contains the Data Manipulation Language (DML) scripts
+-- to populate the tables with sample data for the Online Retail Sales Database.
+
+-- Insert Sample Customers
+INSERT INTO customers (first_name, last_name, email, phone_number, address) VALUES
+('Alice', 'Smith', 'alice.smith@example.com', '123-456-7890', '123 Main St, Anytown, CA 90210'),
+('Bob', 'Johnson', 'bob.j@example.com', '987-654-3210', '456 Oak Ave, Otherville, NY 10001'),
+('Charlie', 'Brown', 'charlie.b@example.com', '555-123-4567', '789 Pine Ln, Somewhere, TX 73301');
+
+-- Insert Sample Products
+INSERT INTO products (product_name, description, price, stock_quantity) VALUES
+('Laptop Pro X', 'High performance laptop with 16GB RAM and 512GB SSD', 1200.00, 50),
+('Wireless Mouse', 'Ergonomic wireless mouse with adjustable DPI', 25.50, 200),
+('Mechanical Keyboard', 'RGB mechanical keyboard with clicky switches and wrist rest', 75.00, 100),
+('USB-C Hub', 'Multi-port USB-C adapter with HDMI, USB 3.0, and SD card reader', 40.00, 150),
+('External SSD 1TB', 'Portable 1TB SSD, USB 3.2 Gen 2 compatible', 99.99, 80);
+
+-- Insert Sample Orders
+-- Order 1: Alice buys Laptop and Mouse
+-- total_amount for Order 1: (1 * 1200.00) + (1 * 25.50) = 1225.50
+INSERT INTO orders (customer_id, order_date, total_amount, order_status) VALUES
+(1, '2025-07-20 10:00:00', 1225.50, 'Delivered');
+
+-- Order 2: Bob buys Keyboard and USB-C Hub
+-- total_amount for Order 2: (1 * 75.00) + (1 * 40.00) = 115.00
+INSERT INTO orders (customer_id, order_date, total_amount, order_status) VALUES
+(2, '2025-07-21 14:30:00', 115.00, 'Processing');
+
+-- Order 3: Alice buys another Mouse (2 units) and External SSD
+-- total_amount for Order 3: (2 * 25.50) + (1 * 99.99) = 51.00 + 99.99 = 150.99
+INSERT INTO orders (customer_id, order_date, total_amount, order_status) VALUES
+(1, '2025-07-22 09:15:00', 150.99, 'Pending');
+
+-- Insert Sample Order_Items
+-- Items for Order 1
+INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
+(1, 1, 1, 1200.00), -- Laptop Pro X
+(1, 2, 1, 25.50);   -- Wireless Mouse
+
+-- Items for Order 2
+INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
+(2, 3, 1, 75.00),   -- Mechanical Keyboard
+(2, 4, 1, 40.00);   -- USB-C Hub
+
+-- Items for Order 3
+INSERT INTO order_items (order_id, product_id, quantity, unit_price) VALUES
+(3, 2, 2, 25.50),   -- Wireless Mouse (2 units)
+(3, 5, 1, 99.99);   -- External SSD 1TB
+
+-- Insert Sample Payments
+-- Payment for Order 1 (Completed)
+INSERT INTO payments (order_id, payment_date, amount, payment_method, transaction_id, payment_status) VALUES
+(1, '2025-07-20 10:05:00', 1225.50, 'Credit Card', 'TXN123456789', 'Completed');
+
+-- Payment for Order 2 (Pending - assuming it's processing)
+INSERT INTO payments (order_id, payment_date, amount, payment_method, transaction_id, payment_status) VALUES
+(2, '2025-07-21 14:35:00', 115.00, 'PayPal', 'TXN987654321', 'Pending');
+
+-- No payment yet for Order 3 (status 'Pending' in orders table)
+-- If you want to simulate a failed payment for Order 3, you could add:
+-- INSERT INTO payments (order_id, payment_date, amount, payment_method, transaction_id, payment_status) VALUES
+-- (3, '2025-07-22 09:16:00', 150.99, 'Credit Card', 'TXN456789012', 'Failed');
