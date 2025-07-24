@@ -1,0 +1,44 @@
+Online Retail Sales Database Design Project
+Project Objective:
+This project demonstrates the design and implementation of a normalized SQL schema for an e-commerce platform. It covers database normalization, DDL scripts, sample data population, and generating sales reports using SQL queries and views.
+
+Database Schema Design:
+The database schema is designed to manage Customers, Products, Orders, Order Items, and Payments. The design adheres to 3rd Normal Form (3NF) to ensure data integrity and minimize redundancy.
+
+ER Diagram: format:image(.png)
+
+Technologies Used
+Database: SQLite (managed with DB Browser for SQLite)
+
+Schema Design: dbdiagram.io
+
+Version Control: Git & GitHub
+
+Database Structure (Schema) : DDL
+
+Sample Data:Contains DML and scripts to populate the tables with realistic sample data, enabling testing and reporting.
+
+Sales Reports (Queries & Views): file includes various SQL queries and a view for generating insights:
+
+Total sales by customer.
+
+Top-selling products (by quantity sold).
+
+Orders placed within a specific date range.
+
+Customer details for orders with pending payments.
+
+Detailed order information (joining all related tables).
+
+A DailySalesSummary view.
+
+ Innovation: Key Business Insights for Loyalty Programs
+This project also includes additional queries to derive key business insights, demonstrating how database analysis can inform business strategies like customer loyalty programs
+
+Real world INNOVATION(Level:Simple): HIGH-VALUE CUSTOMERS 
+High-Value Customers (Potential 'Prime' Candidates): A query to identify customers whose total spending significantly exceeds the average. These insights can be used to target customers for exclusive loyalty programs, similar to how Amazon identifies its Prime members, by offering personalized benefits or early access to sales based on their spending habits.
+We can also consider these members for Subscription.
+
+How to Set Up and Run This Project (Using DB Browser for SQLite)
+Download and Install DB Browser for SQLite: If you don't have it, get it from https://sqlitebrowser.org/.
+
