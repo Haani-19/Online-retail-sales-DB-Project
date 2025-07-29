@@ -1,9 +1,9 @@
-- File:queries_reports.sql
-- Contains SQL queries and views for generating sales reports
--Includes a real world Innovation.
+-- File:queries_reports.sql
+-- Contains SQL queries and views for generating sales reports
+--Includes a real world Innovation.
 
-- Query 1: Total Sales by Customer
-- Shows each customer's total spending across all their orders.
+-- Query 1: Total Sales by Customer
+-- Shows each customer's total spending across all their orders.
 SELECT
     c.customer_id,
     c.first_name,
@@ -19,8 +19,8 @@ GROUP BY
 ORDER BY
     total_spent DESC;
 
-- Query 2: Top 5 Selling Products (by Quantity Sold)
-- Identifies the products that have been sold the most in terms of units.
+-- Query 2: Top 5 Selling Products (by Quantity Sold)
+-- Identifies the products that have been sold the most in terms of units.
 SELECT
     p.product_name,
     SUM(oi.quantity) AS total_quantity_sold
@@ -34,8 +34,8 @@ ORDER BY
     total_quantity_sold DESC
 LIMIT 5;
 
-- Query 3: Orders Placed in a Specific Date Range (e.g., July 2025)
-- Retrieves all orders and their customer details within a given period.
+-- Query 3: Orders Placed in a Specific Date Range (e.g., July 2025)
+-- Retrieves all orders and their customer details within a given period.
 SELECT
     o.order_id,
     o.order_date,
@@ -49,12 +49,12 @@ FROM
 JOIN
     customers c ON o.customer_id = c.customer_id
 WHERE
-    o.order_date >= '2025-07-01 00:00:00' AND o.order_date < '2025-08-01 00:00:00'
+    o.order_date >= '2025--07--01 00:00:00' AND o.order_date < '2025--08--01 00:00:00'
 ORDER BY
     o.order_date;
 
-- Query 4: Customer Details for Orders with Pending Payments
-- Helps identify customers whose orders might need follow-up regarding payment.
+-- Query 4: Customer Details for Orders with Pending Payments
+-- Helps identify customers whose orders might need follow--up regarding payment.
 SELECT
     c.customer_id,
     c.first_name,
@@ -73,8 +73,8 @@ JOIN
 WHERE
     p.payment_status = 'Pending';
 
-- Query 5: Detailed Order Information (Order, Customer, Products, Payment)
-- Provides a comprehensive view of a specific order, including all items and payment details.
+-- Query 5: Detailed Order Information (Order, Customer, Products, Payment)
+-- Provides a comprehensive view of a specific order, including all items and payment details.
 SELECT
     o.order_id,
     o.order_date,
@@ -99,21 +99,21 @@ JOIN
     order_items oi ON o.order_id = oi.order_id
 JOIN
     products p ON oi.product_id = p.product_id
-LEFT JOIN - Use LEFT JOIN to include orders even if they don't have a payment recorded yet
+LEFT JOIN -- Use LEFT JOIN to include orders even if they don't have a payment recorded yet
     payments pay ON o.order_id = pay.order_id
 ORDER BY
     o.order_id, p.product_name;
 
-- Query 6: Average Order Value (Innovation Query 1)
-- Calculates the average amount spent per order.
+-- Query 6: Average Order Value (Innovation Query 1)
+-- Calculates the average amount spent per order.
 SELECT
     AVG(total_amount) AS average_order_value
 FROM
     orders;
 
-- Query 7: High-Value Customers (Identifying potential 'Prime' candidates - Innovation Query 2)
-- Identifies customers whose total spending exceeds the overall average order value.
-- These customers could be targeted for loyalty programs or special offers.
+-- Query 7: High--Value Customers (Identifying potential 'Prime' candidates -- Innovation Query 2)
+-- Identifies customers whose total spending exceeds the overall average order value.
+-- These customers could be targeted for loyalty programs or special offers.
 SELECT
     c.customer_id,
     c.first_name,
@@ -132,8 +132,8 @@ ORDER BY
     total_spent DESC;
 
 
-- View 1: Daily Sales Summary
-- Creates a reusable view to quickly get the total sales and number of orders per day.
+-- View 1: Daily Sales Summary
+-- Creates a reusable view to quickly get the total sales and number of orders per day.
 CREATE VIEW DailySalesSummary AS
 SELECT
     DATE(order_date) AS sales_date,
@@ -146,5 +146,5 @@ GROUP BY
 ORDER BY
     sales_date;
 
-- Querying the DailySalesSummary View
+-- Querying the DailySalesSummary View
 SELECT * FROM DailySalesSummary;
